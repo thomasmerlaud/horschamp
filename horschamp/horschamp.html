@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hors Champ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #111;
+            color: #f4d35e;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Conteneur principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Titre du film */
+        .titre-film {
+            font-size: 48px;
+            font-weight: bold;
+            color: #f4d35e;
+            margin-top: 80px;
+            margin-bottom: 200px;
+            text-align: center;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+            letter-spacing: 3px;
+        }
+
+        /* Affiche du film sans rognage */
+        .affiche {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Section synopsis */
+        .synopsis {
+            padding: 40px 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .synopsis h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #f4d35e;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .synopsis p {
+            font-family: 'Georgia', serif;
+            font-size: 18px;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #ccc;
+        }
+
+        /* Bande-annonce */
+        .video-section {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .video-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #f4d35e;
+        }
+
+        .video-wrapper {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            border: none;
+        }
+
+        /* Footer épuré */
+        footer {
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            background-color: #111;
+            font-size: 14px;
+            margin-top: 100px; /* Ajouté pour assurer de l'espace avant le footer */
+        }
+
+        .footer-content {
+            color: #f4d35e;
+            margin-top: 10px;
+        }
+
+        /* Révélation progressive au scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 2.5s ease, transform 2.5s ease; /* Durée augmentée à 2.5s */
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Titre du film -->
+        <h1 class="titre-film reveal">HORS CHAMP</h1>
+
+        <!-- Affiche du film -->
+        <img src="affiche.png" alt="Affiche du film" class="affiche reveal">
+
+        <!-- Section Synopsis -->
+        <section class="synopsis reveal">
+            <h2>Synopsis</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </section>
+
+        <!-- Section Lecteur Vidéo -->
+        <section class="video-section reveal">
+            <h2>COURT MÉTRAGE</h2>
+            <div class="video-wrapper">
+                <video controls>
+                    <source src="bande-annonce.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la lecture de vidéos.
+                </video>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="">
+            <p class="footer-content">
+                Thomas Merlaud Gwenaëlle Yau Chun Wan César Morel Eva Garbuio-Binaud Gabriel Valton Elyser Cellier
+            </p>
+            <br><br>
+            <p>&copy; 2024 - Tous droits réservés - L'amour en Chemin</p>
+        </footer>
+    </div>
+
+    <script>
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveal.getBoundingClientRect().top;
+                const revealPoint = 150;
+
+                if (elementTop < windowHeight - revealPoint) {
+                    setTimeout(() => {
+                        reveal.classList.add('active');
+                    }, 300); // Légère attente de 300ms pour un effet plus fluide
+                } else {
+                    reveal.classList.remove('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Pour activer au chargement initial
+    </script>
+
+</body>
+</html>
